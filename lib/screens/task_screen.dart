@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:to_doey/screens/add_task_screen.dart';
+import 'package:to_doey/widgets/task_tile.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -6,7 +8,10 @@ class TasksScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: () {
+          showModalBottomSheet(
+              context: context, builder: (context) => AddTaskScreen());
+        },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
       ),
@@ -29,13 +34,13 @@ class TasksScreen extends StatelessWidget {
                   radius: 30.0,
                 ),
                 SizedBox(
-                  height: 10.0,
+                  height: 16.0,
                 ),
                 Text(
                   "Todoey",
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 50.0,
+                      fontSize: 45.0,
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
@@ -47,12 +52,14 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0)),
               ),
+              child: TasksList(),
             ),
           ),
         ],
